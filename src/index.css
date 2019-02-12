@@ -12,3 +12,12 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.sidebar {
+  position: absolute;
+  background-color: black;
+  opacity: 0.5;
+  color: white;
+  right: 0;
+  min-height: 100%;
+}

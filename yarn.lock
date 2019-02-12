@@ -775,6 +775,10 @@
     "@svgr/plugin-svgo" "^4.0.3"
     loader-utils "^1.1.0"
 
+"@types/cytoscape@^3.2.9":
+  version "3.2.9"
+  resolved "https://registry.yarnpkg.com/@types/cytoscape/-/cytoscape-3.2.9.tgz#2d1f2c1faf440690a4805856561604f30cfb7517"
+
 "@types/jest@24.0.0":
   version "24.0.0"
   resolved "https://registry.yarnpkg.com/@types/jest/-/jest-24.0.0.tgz#848492026c327b3548d92be0352a545c36a21e8a"
@@ -803,6 +807,10 @@
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
+
+"@types/scheduler@^0.12.0":
+  version "0.12.0"
+  resolved "https://registry.yarnpkg.com/@types/scheduler/-/scheduler-0.12.0.tgz#f2d6663802c4c8b4468dde655d0af610287b151c"
 
 "@types/tapable@1.0.2":
   version "1.0.2"
@@ -2424,6 +2432,13 @@ cyclist@~0.2.2:
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/cyclist/-/cyclist-0.2.2.tgz#1b33792e11e914a2fd6d6ed6447464444e5fa640"
 
+cytoscape@^3.4.1:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/cytoscape/-/cytoscape-3.4.1.tgz#2c85bdc75dd3cbfe04a8eb33d460443b83a12514"
+  dependencies:
+    heap "^0.2.6"
+    lodash.debounce "^4.0.8"
+
 damerau-levenshtein@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/damerau-levenshtein/-/damerau-levenshtein-1.0.4.tgz#03191c432cb6eea168bb77f3a55ffdccb8978514"
@@ -3764,6 +3779,10 @@ he@1.2.x:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/he/-/he-1.2.0.tgz#84ae65fa7eafb165fddb61566ae14baf05664f0f"
 
+heap@^0.2.6:
+  version "0.2.6"
+  resolved "https://registry.yarnpkg.com/heap/-/heap-0.2.6.tgz#087e1f10b046932fc8594dd9e6d378afc9d1e5ac"
+
 hex-color-regex@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/hex-color-regex/-/hex-color-regex-1.1.0.tgz#4c06fccb4602fe2602b3c93df82d7e7dbf1a8a8e"
@@ -5052,6 +5071,10 @@ lodash._reinterpolate@~3.0.0:
 lodash.camelcase@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/lodash.camelcase/-/lodash.camelcase-4.3.0.tgz#b28aa6288a2b9fc651035c7711f65ab6190331a6"
+
+lodash.debounce@^4.0.8:
+  version "4.0.8"
+  resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
 
 lodash.memoize@^4.1.2:
   version "4.1.2"
@@ -6829,7 +6852,7 @@ react-dev-utils@^7.0.2:
     strip-ansi "5.0.0"
     text-table "0.2.0"
 
-react-dom@16.8.1:
+react-dom@^16.8.1:
   version "16.8.1"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-16.8.1.tgz#ec860f98853d09d39bafd3a6f1e12389d283dbb4"
   dependencies:
@@ -6896,7 +6919,7 @@ react-scripts@2.1.4:
   optionalDependencies:
     fsevents "1.2.4"
 
-react@16.8.1:
+react@^16.8.1:
   version "16.8.1"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.1.tgz#ae11831f6cb2a05d58603a976afc8a558e852c4a"
   dependencies:
