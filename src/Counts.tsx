@@ -8,13 +8,11 @@ export interface CountsProps {
 export const Counts: React.FunctionComponent<CountsProps> = ({
   edgeCount,
   nodeCount
-}) => {
-  return (
-    <>
-      <p>{edgeCount} edges</p>
-      <p>{nodeCount} nodes</p>
-    </>
-  );
-};
+}) => (
+  <>
+    <p>{edgeCount} edges</p>
+    <p>{nodeCount} nodes</p>
+  </>
+);
 
 export default React.memo(Counts);

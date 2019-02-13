@@ -1,5 +1,6 @@
+import React, { RefObject, useEffect } from "react";
+
 import CytoscapeContext from "./CytoscapeContext";
-import React from "react";
 import cytoscape from "cytoscape";
 
 export interface GraphProps {
@@ -8,53 +9,51 @@ export interface GraphProps {
   styleUrl: string;
 }
 
-export class Graph extends React.Component<GraphProps> {
-  cyContainer = React.createRef<HTMLDivElement>();
+function useCytoscape() {
+  const cyContainer = React.useRef<HTMLDivElement>(null);
+  const cy = cytoscape();
 
-  // TODO: Put side-effect logic all in once place
-  // https://reactjs.org/blog/2019/02/06/react-v16.8.0.html
-  cy = cytoscape({
-    layout: { name: "random" }
-  });
-  async componentDidMount() {
-    const { cy } = this;
-    const { dataUrl, styleUrl } = this.props;
+  useEffect(() => {
+    (cy as any).mount(cyContainer.current);
 
-    const dataResponse = await fetch(dataUrl);
-    const elements = await dataResponse.json();
-    const styleResponse = await fetch(styleUrl);
-    const style = await styleResponse.json();
+    return cy.destroy;
+  }, []);
 
-    (cy as any).mount(this.cyContainer.current);
-    cy.json({ elements, style });
-  }
-  componentWillUnmount() {
-    const { cy } = this;
-    cy.destroy();
-  }
-
-  render() {
-    const { cy } = this;
-    const { children } = this.props;
-
-    return (
-      <CytoscapeContext.Provider value={cy}>
-        <>
-          <div
-            ref={this.cyContainer}
-            style={{
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%"
-            }}
-          />
-          {children}
-        </>
-      </CytoscapeContext.Provider>
-    );
-  }
+  return [cy, cyContainer] as [cytoscape.Core, RefObject<HTMLDivElement>];
 }
+
+const Graph: React.FunctionComponent<GraphProps> = ({
+  children,
+  dataUrl,
+  styleUrl
+}) => {
+  const [cy, cyContainer] = useCytoscape();
+
+  useEffect(() => {
+    (async () => {
+      const dataResponse = await fetch(dataUrl);
+      const elements = await dataResponse.json();
+      const styleResponse = await fetch(styleUrl);
+      const style = await styleResponse.json();
+      cy.json({ elements, style });
+    })();
+  }, []);
+
+  return (
+    <CytoscapeContext.Provider value={cy}>
+      <div
+        ref={cyContainer}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%"
+        }}
+      />
+      {children}
+    </CytoscapeContext.Provider>
+  );
+};
 
 export default Graph;

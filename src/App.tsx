@@ -9,7 +9,7 @@ class App extends React.Component {
   render() {
     return (
       <React.StrictMode>
-        <Profiler onRender={(...args: any) => console.log("onRender", args)}>
+        <Profiler id="App" onRender={() => {}}>
           <div className="App">
             <React.Suspense
               fallback={
