@@ -1,5 +1,4 @@
 import CytoscapeContext from "./CytoscapeContext";
-import PropTypes from "prop-types";
 import React from "react";
 import cytoscape from "cytoscape";
 
@@ -12,10 +11,7 @@ export interface GraphProps {
 export class Graph extends React.Component<GraphProps> {
   // TODO: Simplify container setting
   // https://reactjs.org/blog/2018/03/29/react-v-16-3.html
-  cyContainer: HTMLDivElement | null = null;
-  setCyContainer = (element: HTMLDivElement) => {
-    this.cyContainer = element;
-  };
+  cyContainer = React.createRef<HTMLDivElement>();
 
   // TODO: Put side-effect logic all in once place
   // https://reactjs.org/blog/2019/02/06/react-v16.8.0.html
@@ -31,7 +27,7 @@ export class Graph extends React.Component<GraphProps> {
     const styleResponse = await fetch(styleUrl);
     const style = await styleResponse.json();
 
-    (cy as any).mount(this.cyContainer);
+    (cy as any).mount(this.cyContainer.current);
     cy.json({ elements, style });
   }
   componentWillUnmount() {
@@ -47,7 +43,7 @@ export class Graph extends React.Component<GraphProps> {
       <CytoscapeContext.Provider value={cy}>
         <>
           <div
-            ref={this.setCyContainer}
+            ref={this.cyContainer}
             style={{
               position: "absolute",
               top: 0,
