@@ -17,6 +17,4 @@ export const Counts: React.FunctionComponent<CountsProps> = ({
   );
 };
 
-// TODO: Don't render every time!
-// https://reactjs.org/blog/2018/10/23/react-v-16-6.html
 export default React.memo(Counts);

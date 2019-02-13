@@ -1,9 +1,8 @@
-// TODO: Use code-splitting here
-// https://reactjs.org/blog/2018/10/23/react-v-16-6.html
-import Counts from "./Counts";
 import CytoscapeContext from "./CytoscapeContext";
 import React from "react";
 import { unstable_trace as trace } from "scheduler/tracing";
+
+const Counts = React.lazy(() => import("./Counts"));
 
 export class Sidebar extends React.Component {
   static contextType = CytoscapeContext;

@@ -9,8 +9,6 @@ export interface GraphProps {
 }
 
 export class Graph extends React.Component<GraphProps> {
-  // TODO: Simplify container setting
-  // https://reactjs.org/blog/2018/03/29/react-v-16-3.html
   cyContainer = React.createRef<HTMLDivElement>();
 
   // TODO: Put side-effect logic all in once place
