@@ -3,6 +3,7 @@
 import Counts from "./Counts";
 import CytoscapeContext from "./CytoscapeContext";
 import React from "react";
+import { unstable_trace as trace } from "scheduler/tracing";
 
 export class Sidebar extends React.Component {
   static contextType = CytoscapeContext;
@@ -19,7 +20,9 @@ export class Sidebar extends React.Component {
     cy.maxZoom(2);
 
     cy.on("zoom", (event: cytoscape.EventObject) =>
-      this.setState({ zoom: event.cy.zoom() })
+      trace("zoom event", performance.now(), () => {
+        this.setState({ zoom: event.cy.zoom() });
+      })
     );
   }
   componentWillUnmount() {
@@ -32,7 +35,9 @@ export class Sidebar extends React.Component {
     const { zoom } = this.state;
 
     const handleZoomChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-      cy.zoom(parseFloat(event.currentTarget.value));
+      trace("handleZoomChange", performance.now(), () => {
+        cy.zoom(parseFloat(event.currentTarget.value));
+      });
     };
 
     const edgeCount = cy.edges().length;
