@@ -1,13 +1,11 @@
 // TODO: Use code-splitting here
 // https://reactjs.org/blog/2018/10/23/react-v-16-6.html
 import Counts from "./Counts";
-import PropTypes from "prop-types";
+import CytoscapeContext from "./CytoscapeContext";
 import React from "react";
 
 export class Sidebar extends React.Component {
-  static contextTypes = {
-    cytoscape: PropTypes.object
-  };
+  static contextType = CytoscapeContext;
 
   state = {
     zoom: 1
@@ -16,7 +14,7 @@ export class Sidebar extends React.Component {
   // TODO: Put side-effect logic all in once place
   // https://reactjs.org/blog/2019/02/06/react-v16.8.0.html
   componentDidMount() {
-    const cy = this.context.cytoscape;
+    const cy = this.context;
     cy.minZoom(0.1);
     cy.maxZoom(2);
 
@@ -25,12 +23,12 @@ export class Sidebar extends React.Component {
     );
   }
   componentWillUnmount() {
-    const cy = this.context.cytoscape;
+    const cy = this.context;
     cy.off("zoom");
   }
 
   render() {
-    const cy = this.context.cytoscape;
+    const cy = this.context;
     const { zoom } = this.state;
 
     const handleZoomChange = (event: React.ChangeEvent<HTMLInputElement>) => {
