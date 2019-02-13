@@ -1,35 +1,64 @@
-import React, { ChangeEvent, FunctionComponent, lazy, useContext, useEffect, useState } from "react";
+// TODO: Use code-splitting here
+// https://reactjs.org/blog/2018/10/23/react-v-16-6.html
+import Counts from "./Counts";
+import PropTypes from "prop-types";
+import React from "react";
 
-import CytoscapeContext from './CytoscapeContext'
+export class Sidebar extends React.Component {
+  static contextTypes = {
+    cytoscape: PropTypes.object
+  };
 
-const Counts = lazy(()=>import('./Counts'))
-export interface SidebarProps {}
+  state = {
+    zoom: 1
+  };
 
-export const Sidebar: FunctionComponent<SidebarProps> = props => {
-  const [zoom, setZoom] = useState(1)
+  // TODO: Put side-effect logic all in once place
+  // https://reactjs.org/blog/2019/02/06/react-v16.8.0.html
+  componentDidMount() {
+    const cy = this.context.cytoscape;
+    cy.minZoom(0.1);
+    cy.maxZoom(2);
 
-  const cy = useContext(CytoscapeContext)
-  
-    cy.minZoom(0.1)
-    cy.maxZoom(2)
-
-  useEffect(() => {
-    cy.on('zoom', (event) => setZoom(event.cy.zoom()))
-    return (() => { cy.off('zoom') })
-  }, [])
-  
-  const handleZoomChange = (event: ChangeEvent<HTMLInputElement>) => {
-   cy.zoom((parseFloat(event.currentTarget.value)))
+    cy.on("zoom", (event: cytoscape.EventObject) =>
+      this.setState({ zoom: event.cy.zoom() })
+    );
   }
-  
-  const edgeCount = cy.edges().length
-  const nodeCount = cy.nodes().length
+  componentWillUnmount() {
+    const cy = this.context.cytoscape;
+    cy.off("zoom");
+  }
 
-return <form className="sidebar">
-    <label htmlFor="zoom">Zoom {zoom.toFixed(2)}</label>
-    <input type="range" id="padding" max={2} min={0.1} step="any" onChange={handleZoomChange} value={zoom}/>
-    <Counts edgeCount={edgeCount} nodeCount={nodeCount} />
-  </form>;
-};
+  render() {
+    const cy = this.context.cytoscape;
+    const { zoom } = this.state;
+
+    const handleZoomChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+      cy.zoom(parseFloat(event.currentTarget.value));
+    };
+
+    const edgeCount = cy.edges().length;
+    const nodeCount = cy.nodes().length;
+    const minZoom = cy.minZoom();
+    const maxZoom = cy.maxZoom();
+
+    return (
+      <form className="sidebar">
+        <label htmlFor="zoom">Zoom {zoom.toFixed(2)}</label>
+        <br />
+        <input
+          type="range"
+          id="zoom"
+          max={maxZoom}
+          min={minZoom}
+          step="any"
+          onChange={handleZoomChange}
+          value={zoom}
+        />
+        <Counts edgeCount={edgeCount} nodeCount={nodeCount} />
+      </form>
+    );
+  }
+}
 
 export default Sidebar;

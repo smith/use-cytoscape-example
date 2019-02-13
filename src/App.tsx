@@ -1,17 +1,24 @@
-import React, {Component, Suspense} from 'react';
+// TODO: Code split these
+// https://reactjs.org/blog/2018/10/23/react-v-16-6.html
+import Graph from "./Graph";
+import React from "react";
+import Sidebar from "./Sidebar";
 
-import Graph from './Graph';
-import Sidebar from './Sidebar'
-
-class App extends Component {
+// TODO: Ensure we aren't using any outdated APIs
+//  https://reactjs.org/blog/2018/03/29/react-v-16-3.html
+// TODO: Add some profiling
+// https://reactjs.org/blog/2018/05/23/react-v-16-4.html
+// https://github.com/bvaughn/rfcs/blob/profiler/text/0000-profiler.md#detailed-design
+class App extends React.Component {
   render() {
     return (
       <div className="App">
-      <Suspense fallback={'LOADING...'}>
-       <Graph dataUrl="http://js.cytoscape.org/demos/cose-layout/data.json" styleUrl="http://js.cytoscape.org/demos/colajs-graph/cy-style.json">
-       <Sidebar />
-       </Graph>
-       </Suspense>
+        <Graph
+          dataUrl="http://js.cytoscape.org/demos/cose-layout/data.json"
+          styleUrl="http://js.cytoscape.org/demos/colajs-graph/cy-style.json"
+        >
+          <Sidebar />
+        </Graph>
       </div>
     );
   }

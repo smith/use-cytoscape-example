@@ -7,10 +7,14 @@
     "@types/jest": "24.0.0",
     "@types/node": "10.12.24",
     "@types/react": "16.8.2",
+    "@types/react-cache": "^2.0.0",
     "@types/react-dom": "16.8.0",
     "@types/scheduler": "^0.12.0",
     "cytoscape": "^3.4.1",
+    "prettier": "^1.16.4",
+    "prop-types": "^15.7.1",
     "react": "^16.8.1",
+    "react-cache": "^2.0.0-alpha.1",
     "react-dom": "^16.8.1",
     "react-scripts": "2.1.4",
     "scheduler": "^0.13.1",
@@ -30,5 +34,6 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "prettier": {}
 }
