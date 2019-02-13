@@ -16,7 +16,6 @@
     "react": "^16.8.1",
     "react-cache": "^2.0.0-alpha.1",
     "react-dom": "^16.8.1",
-    "react-hooks-fetch": "^0.8.0",
     "react-scripts": "2.1.4",
     "scheduler": "^0.13.1",
     "typescript": "3.3.3"
