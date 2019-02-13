@@ -1,7 +1,8 @@
 {
-  "name": "use-cytoscape",
+  "name": "use-cytoscape-example",
   "version": "0.1.0",
   "private": true,
+  "license": "Apache-2.0",
   "dependencies": {
     "@types/cytoscape": "^3.2.9",
     "@types/jest": "24.0.0",
@@ -21,19 +22,13 @@
     "typescript": "3.3.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "react-scripts start"
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  },
+  "prettier": {},
   "browserslist": [
     ">0.2%",
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ],
-  "prettier": {}
+  ]
 }
