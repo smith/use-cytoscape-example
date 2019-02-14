@@ -3,7 +3,7 @@ import React from "react";
 const Graph = React.lazy(() => import("./Graph"));
 const Sidebar = React.lazy(() => import("./Sidebar"));
 
-const Profiler = (React as any).unstable_Profiler;
+const Profiler = React.unstable_Profiler;
 
 class App extends React.Component {
   render() {
