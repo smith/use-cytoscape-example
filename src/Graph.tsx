@@ -14,7 +14,7 @@ function useCytoscape() {
   const cy = cytoscape();
 
   useEffect(() => {
-    (cy as any).mount(cyContainer.current);
+    cy.mount(cyContainer.current);
 
     return cy.destroy;
   }, []);
