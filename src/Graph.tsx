@@ -39,7 +39,7 @@ export class Graph extends React.Component<GraphProps> {
     const styleResponse = await fetch(styleUrl);
     const style = await styleResponse.json();
 
-    (cy as any).mount(this.cyContainer);
+    cy.mount(this.cyContainer);
     cy.json({ elements, style });
   }
   componentWillUnmount() {
